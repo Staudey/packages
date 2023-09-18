@@ -4,31 +4,29 @@ Date: Sun, 3 Oct 2021 13:25:57 +0200
 Subject: [PATCH] Don't test Monkey's Audio and tta
 
 ---
- tests/inittestcase.cpp        | 16 -------
+ tests/inittestcase.cpp        | 14 ------
  tests/test_decoder.cpp        | 80 -----------------------------------
  tests/test_format.cpp         |  8 ----
  tests/test_inputaudiofile.cpp | 20 ---------
- 4 files changed, 124 deletions(-)
+ 4 files changed, 122 deletions(-)
 
 diff --git a/tests/inittestcase.cpp b/tests/inittestcase.cpp
-index 174d83a..73bc102 100644
+index 1971ad1..4a0c845 100644
 --- a/tests/inittestcase.cpp
 +++ b/tests/inittestcase.cpp
-@@ -72,23 +72,17 @@ void TestFlacon::initTestCase()
-     initTypes();
-     Settings::setFileName(TEST_OUT_DIR "/flacon.conf");
+@@ -73,10 +73,8 @@ void TestFlacon::initTestCase()
+     findPrograms();
  
--    if (findProgram("mac").isEmpty())
--        QFAIL("mac program not found");
-     if (findProgram("flac").isEmpty())
-         QFAIL("flac program not found");
-     if (findProgram("wavpack").isEmpty())
-         QFAIL("wavpack program not found");
--    if (findProgram("ttaenc").isEmpty())
--        QFAIL("ttaenc program not found");
+     const auto PROGS = {
+-        ExtProgram::mac(),
+         ExtProgram::flac(),
+         ExtProgram::wavpack(),
+-        ExtProgram::ttaenc(),
+     };
  
-     if (!QDir().mkpath(mTmpDir))
-         QTest::qFail(QString("Can't create directory '%1'").arg(mTmpDir).toLocal8Bit(), __FILE__, __LINE__);
+     for (auto &p : PROGS) {
+@@ -92,23 +90,17 @@ void TestFlacon::initTestCase()
+     createWavFile(mTmpDir + "1min.wav", 60);
  
      mAudio_cd_wav  = mTmpDir + "CD.wav";
 -    mAudio_cd_ape  = mTmpDir + "CD.ape";
@@ -36,12 +34,8 @@ index 174d83a..73bc102 100644
      mAudio_cd_wv   = mTmpDir + "CD.wv";
 -    mAudio_cd_tta  = mTmpDir + "CD.tta";
  
-     {
-         QFile hdr(TEST_DATA_DIR "CD.wav.hdr");
-@@ -97,16 +91,12 @@ void TestFlacon::initTestCase()
+     createWavFile(mAudio_cd_wav, 900);
  
-         createWavFile(mAudio_cd_wav, hdr.readAll(), 900);
-     }
 -    auto wait_cd_ape  = QtConcurrent::run(encodeAudioFile, mAudio_cd_wav, mAudio_cd_ape);
      auto wait_cd_flac = QtConcurrent::run(encodeAudioFile, mAudio_cd_wav, mAudio_cd_flac);
      auto wait_cd_wv   = QtConcurrent::run(encodeAudioFile, mAudio_cd_wav, mAudio_cd_wv);
@@ -55,7 +49,7 @@ index 174d83a..73bc102 100644
  
      {
          QFile hdr(TEST_DATA_DIR "24x96.wav.hdr");
-@@ -115,20 +105,14 @@ void TestFlacon::initTestCase()
+@@ -117,20 +109,14 @@ void TestFlacon::initTestCase()
  
          createWavFile(mAudio_24x96_wav, hdr.readAll(), 900);
      }
@@ -77,7 +71,7 @@ index 174d83a..73bc102 100644
  
  /************************************************
 diff --git a/tests/test_decoder.cpp b/tests/test_decoder.cpp
-index fae5d02..73cbd9f 100644
+index c49f930..f39151c 100644
 --- a/tests/test_decoder.cpp
 +++ b/tests/test_decoder.cpp
 @@ -177,86 +177,6 @@ void TestFlacon::testDecoder_data()
@@ -168,7 +162,7 @@ index fae5d02..73cbd9f 100644
      QTest::newRow("WV 001 cd")
              << (QStringList()
 diff --git a/tests/test_format.cpp b/tests/test_format.cpp
-index d0f0b8f..4fcd229 100644
+index 5e416a1..34e2e20 100644
 --- a/tests/test_format.cpp
 +++ b/tests/test_format.cpp
 @@ -112,14 +112,6 @@ void TestFlacon::testFormatFromFile_data()
@@ -187,10 +181,10 @@ index d0f0b8f..4fcd229 100644
      QTest::newRow("WV 01") << mAudio_cd_wv << "wv";
      QTest::newRow("WV 02") << mAudio_24x96_wv << "wv";
 diff --git a/tests/test_inputaudiofile.cpp b/tests/test_inputaudiofile.cpp
-index 32c7053..b3da1fd 100644
+index 11911f3..fd3dd98 100644
 --- a/tests/test_inputaudiofile.cpp
 +++ b/tests/test_inputaudiofile.cpp
-@@ -63,21 +63,11 @@ void TestFlacon::testInputAudioFile_data()
+@@ -64,21 +64,11 @@ void TestFlacon::testInputAudioFile_data()
      QTest::addColumn<QString>("duration", nullptr);
      QTest::addColumn<QString>("format", nullptr);
  
@@ -212,7 +206,7 @@ index 32c7053..b3da1fd 100644
      QTest::newRow("04 mAudio_cd_wav")
              << mAudio_cd_wav
              << "900000"
-@@ -88,21 +78,11 @@ void TestFlacon::testInputAudioFile_data()
+@@ -89,21 +79,11 @@ void TestFlacon::testInputAudioFile_data()
              << "900000"
              << "WavPack";
  
@@ -235,5 +229,5 @@ index 32c7053..b3da1fd 100644
              << mAudio_24x96_wav
              << "900000"
 -- 
-2.32.0
+2.40.1
 
