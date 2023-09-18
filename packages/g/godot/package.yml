@@ -1,8 +1,8 @@
 name       : godot-classic
-version    : 3.5.2
-release    : 49
+version    : 4.2.1
+release    : 51
 source     :
-    - https://github.com/godotengine/godot/archive/3.5.2-stable.tar.gz : f40652a1343d060d5e3f53957c27205f39c2bfe54b7701d1b6c133c0a90f1f34
+    - https://github.com/godotengine/godot/archive/4.2.1-stable.tar.gz : 716cfd489dbfc91b5e04cc0df8be415ba6eec74c5fb471840275d887cb53ff95
 homepage   : https://godotengine.org/
 license    :
     - CC-BY-3.0
@@ -42,12 +42,13 @@ builddeps  :
     - pkgconfig(xinerama)
     - pkgconfig(xrandr)
     - alsa-plugins
+    - dotnet
+    - dotnet-sdk
+    - dotnet-source-built-artifacts
     - llvm-clang
     - mbedtls-devel
-    - mono-msbuild
     - nuget
     - scons
-    - xorg-server-xvfb
     - yasm
 rundeps    :
     - godot-common
@@ -73,35 +74,37 @@ setup      : |
     # This shouldn't be necessary with usysconf but ???
     cert-sync --user /etc/ssl/certs/ca-certificates.crt
 build      : |
-    GODOT_OPTIONS="use_llvm=yes bits=64 deprecated=no builtin_enet=no builtin_mbedtls=no builtin_freetype=no builtin_bullet=no builtin_libogg=no builtin_libpng=no builtin_libtheora=no builtin_libvpx=no builtin_libwebp=no builtin_openssl=no builtin_opus=no builtin_zlib=no builtin_zstd=no builtin_pcre2=no udev=yes"
+    GODOT_OPTIONS="use_llvm=yes bits=64 deprecated=no builtin_enet=no builtin_mbedtls=no builtin_freetype=no builtin_bullet=no builtin_libogg=no builtin_libpng=no builtin_libtheora=no builtin_libvpx=no builtin_libwebp=no builtin_openssl=no builtin_opus=no builtin_zlib=no builtin_zstd=no builtin_pcre2=no builtin_graphite=no builtin_harfbuzz=no udev=yes"
 
     ##### Classical
     # IDE
-    scons %JOBS% platform=x11 tools=yes $GODOT_OPTIONS target=release_debug
+    scons %JOBS% platform=linuxbsd $GODOT_OPTIONS target=editor
     # Linux X11 64 Template
-    scons %JOBS% platform=x11 tools=no $GODOT_OPTIONS target=release
+    scons %JOBS% platform=linuxbsd $GODOT_OPTIONS target=template_release production=yes
 
     ##### Mono
     GODOT_OPTIONS+=" module_mono_enabled=yes"
 
     # Build temporary binary to compile with mono
-    scons %JOBS% platform=x11 tools=yes use_llvm=yes module_mono_enabled=yes mono_glue=no
+    scons %JOBS% platform=linuxbsd target=editor use_llvm=yes module_mono_enabled=yes mono_glue=no
     # Generate glue sources
-    xvfb-run -a -s "-screen 0 1024x768x24" bin/godot.x11.tools.64.llvm.mono --generate-mono-glue modules/mono/glue
+    bin/godot.linuxbsd.editor.x86_64.llvm.mono --headless --generate-mono-glue modules/mono/glue
+    # msbuild ./modules/mono/glue/GodotSharp/GodotSharp.sln /restore /t:Build /p:Configuration=Release /p:NoWarn=1591
+    ./modules/mono/build_scripts/build_assemblies.py --godot-output-dir=./bin --godot-platform=linuxbsd --mono-prefix=/usr
 
     # IDE
-    scons %JOBS% platform=x11 tools=yes $GODOT_OPTIONS target=release_debug
+    scons %JOBS% platform=linuxbsd $GODOT_OPTIONS target=editor
     # Linux X11 64 Template
-    scons %JOBS% platform=x11 tools=no $GODOT_OPTIONS target=release
+    scons %JOBS% platform=linuxbsd $GODOT_OPTIONS target=template_release production=yes
 install    : |
-    install -Dm00755 bin/godot.x11.opt.* -t $installdir/%libdir%/godot
+    install -Dm00755 bin/godot.linuxbsd.* -t $installdir/%libdir%/godot
     install -dm00755 $installdir/%libdir%/godot/GodotSharp/Api/{Debug,Release}
     install -dm00755 $installdir/%libdir%/godot/GodotSharp/Tools
     install -m00644 bin/GodotSharp/Api/Debug/{*.dll,*.pdb,*.xml} -t $installdir/%libdir%/godot/GodotSharp/Api/Debug
     install -m00644 bin/GodotSharp/Api/Release/{*.dll,*.pdb,*.xml} -t $installdir/%libdir%/godot/GodotSharp/Api/Release
-    install -m00644 bin/GodotSharp/Tools/{*.dll,*.pdb} -t $installdir/%libdir%/godot/GodotSharp/Tools
-    rm $installdir/%libdir%/godot/GodotSharp/Tools/Microsoft.VisualStudio.Setup.Configuration.Interop.dll
-    install -m00644 bin/GodotSharp/Tools/MSBuild.* -t $installdir/%libdir%/godot/GodotSharp/Tools
+    install -m00644 bin/GodotSharp/Tools/* -t $installdir/%libdir%/godot/GodotSharp/Tools
+    # install -m00644 bin/GodotSharp/Tools/{*.dll,*.pdb} -t $installdir/%libdir%/godot/GodotSharp/Tools
+    # install -m00644 bin/GodotSharp/Tools/MSBuild.* -t $installdir/%libdir%/godot/GodotSharp/Tools
     install -Dm00644 icon.svg $installdir/usr/share/icons/hicolor/scalable/apps/godot.svg
     install -Dm00644 icon.png $installdir/usr/share/pixmaps/godot.png
     install -Dm00644 misc/dist/linux/org.godotengine.Godot.desktop $installdir/usr/share/applications/org.godotengine.Godot.desktop
@@ -110,5 +113,5 @@ install    : |
     install -Dm00644 misc/dist/linux/org.godotengine.Godot.appdata.xml $installdir/usr/share/metainfo/org.godotengine.Godot.appdata.xml
     install -Dm00644 misc/dist/linux/org.godotengine.Godot.xml $installdir/usr/share/mime/packages/org.godotengine.Godot.xml
     install -dm00755 $installdir/usr/bin
-    ln -s %libdir%/godot/godot.x11.opt.tools.64.llvm $installdir/usr/bin/godot
-    ln -s %libdir%/godot/godot.x11.opt.tools.64.llvm.mono $installdir/usr/bin/godot.mono
+    ln -s %libdir%/godot/godot.linuxbsd.editor.x86_64.llvm $installdir/usr/bin/godot
+    ln -s %libdir%/godot/godot.linuxbsd.editor.x86_64.llvm.mono $installdir/usr/bin/godot.mono
