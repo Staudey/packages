@@ -3,8 +3,8 @@
         <Name>gnome-boxes</Name>
         <Homepage>https://apps.gnome.org/app/org.gnome.Boxes/</Homepage>
         <Packager>
-            <Name>Zach Bacon</Name>
-            <Email>zachbacon@vba-m.com</Email>
+            <Name>Thomas Staudinger</Name>
+            <Email>Staudi.Kaos@gmail.com</Email>
         </Packager>
         <License>GPL-2.0-only</License>
         <PartOf>desktop.gnome</PartOf>
@@ -38,6 +38,7 @@
             <Path fileType="data">/usr/share/gnome-boxes/osinfo/os/fedoraproject.org/fedora-1.xml</Path>
             <Path fileType="data">/usr/share/gnome-boxes/osinfo/os/fedoraproject.org/silverblue-28.xml</Path>
             <Path fileType="data">/usr/share/gnome-boxes/osinfo/os/freedos.org/freedos-1.2.xml</Path>
+            <Path fileType="data">/usr/share/gnome-boxes/osinfo/os/getsol.us/solus-rolling.xml</Path>
             <Path fileType="data">/usr/share/gnome-boxes/osinfo/os/gnome.org/gnome-3.38.xml</Path>
             <Path fileType="data">/usr/share/gnome-boxes/osinfo/os/gnome.org/gnome-nightly.xml</Path>
             <Path fileType="data">/usr/share/gnome-boxes/osinfo/os/guix.gnu.org/guix-1.3.xml</Path>
@@ -745,7 +746,7 @@
 </Description>
         <PartOf>programming.devel</PartOf>
         <RuntimeDependencies>
-            <Dependency release="59">gnome-boxes</Dependency>
+            <Dependency release="60">gnome-boxes</Dependency>
         </RuntimeDependencies>
         <Files>
             <Path fileType="header">/usr/include/gnome-boxes/govf/govf-disk.h</Path>
@@ -754,12 +755,12 @@
         </Files>
     </Package>
     <History>
-        <Update release="59">
-            <Date>2023-10-17</Date>
+        <Update release="60">
+            <Date>2024-01-30</Date>
             <Version>45.0</Version>
             <Comment>Packaging update</Comment>
-            <Name>Zach Bacon</Name>
-            <Email>zachbacon@vba-m.com</Email>
+            <Name>Thomas Staudinger</Name>
+            <Email>Staudi.Kaos@gmail.com</Email>
         </Update>
     </History>
 </PISI>
