@@ -1,8 +1,8 @@
 name       : godot-classic
-version    : 4.2.1
+version    : 4.2.2
 release    : 51
 source     :
-    - https://github.com/godotengine/godot/archive/4.2.1-stable.tar.gz : 716cfd489dbfc91b5e04cc0df8be415ba6eec74c5fb471840275d887cb53ff95
+    - https://github.com/godotengine/godot/archive/4.2.2-stable.tar.gz : 990b7b716656122364b1672508c516c898497c50216d7c00c60eeaf507685c0e
 homepage   : https://godotengine.org/
 license    :
     - CC-BY-3.0
@@ -42,9 +42,7 @@ builddeps  :
     - pkgconfig(xinerama)
     - pkgconfig(xrandr)
     - alsa-plugins
-    - dotnet
     - dotnet-sdk
-    - dotnet-source-built-artifacts
     - llvm-clang
     - mbedtls-devel
     - nuget
@@ -56,7 +54,7 @@ rundeps    :
         - pulseaudio
     - ^godot-mono :
         - godot-common
-        - mono-msbuild
+        - dotnet-sdk
 patterns   :
     - ^godot-common :
         - /usr/share/icons
@@ -99,11 +97,11 @@ build      : |
 install    : |
     install -Dm00755 bin/godot.linuxbsd.* -t $installdir/%libdir%/godot
     install -dm00755 $installdir/%libdir%/godot/GodotSharp/Api/{Debug,Release}
-    install -dm00755 $installdir/%libdir%/godot/GodotSharp/Tools
-    install -m00644 bin/GodotSharp/Api/Debug/{*.dll,*.pdb,*.xml} -t $installdir/%libdir%/godot/GodotSharp/Api/Debug
-    install -m00644 bin/GodotSharp/Api/Release/{*.dll,*.pdb,*.xml} -t $installdir/%libdir%/godot/GodotSharp/Api/Release
-    install -m00644 bin/GodotSharp/Tools/* -t $installdir/%libdir%/godot/GodotSharp/Tools
-    # install -m00644 bin/GodotSharp/Tools/{*.dll,*.pdb} -t $installdir/%libdir%/godot/GodotSharp/Tools
+    install -dm00755 $installdir/%libdir%/godot/GodotSharp/Tools/nupkgs
+    install -m00644 bin/GodotSharp/Api/Debug/{*.dll,*.pdb,*.xml,*.json} -t $installdir/%libdir%/godot/GodotSharp/Api/Debug
+    install -m00644 bin/GodotSharp/Api/Release/{*.dll,*.pdb,*.xml,*.json} -t $installdir/%libdir%/godot/GodotSharp/Api/Release
+    install -m00644 bin/GodotSharp/Tools/nupkgs/* -t $installdir/%libdir%/godot/GodotSharp/Tools/nupkgs
+    install -m00644 bin/GodotSharp/Tools/{*.dll,*.pdb,*.json} -t $installdir/%libdir%/godot/GodotSharp/Tools
     # install -m00644 bin/GodotSharp/Tools/MSBuild.* -t $installdir/%libdir%/godot/GodotSharp/Tools
     install -Dm00644 icon.svg $installdir/usr/share/icons/hicolor/scalable/apps/godot.svg
     install -Dm00644 icon.png $installdir/usr/share/pixmaps/godot.png

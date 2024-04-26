@@ -415,7 +415,6 @@ libm.so.6:logf
 libm.so.6:logl
 libm.so.6:lrint
 libm.so.6:lrintf
-libm.so.6:lroundf
 libm.so.6:modf
 libm.so.6:modff
 libm.so.6:nearbyint

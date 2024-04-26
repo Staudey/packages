@@ -9,14 +9,14 @@
         <License>CC-BY-3.0</License>
         <License>MIT</License>
         <PartOf>games</PartOf>
-        <Summary xml:lang="en">Godot Engine Classical version – Multi-platform 2D and 3D game engine</Summary>
+        <Summary xml:lang="en">Godot Engine Classical version &#x2013; Multi-platform 2D and 3D game engine</Summary>
         <Description xml:lang="en">Godot Engine is a feature-packed, cross-platform game engine to create 2D and 3D games from a unified interface. It provides a comprehensive set of common tools, so that users can focus on making games without having to reinvent the wheel. Games can be exported in one click to a number of platforms, including the major desktop platforms (Linux, Mac OSX, Windows) as well as mobile (Android, iOS) and web-based (HTML5) platforms.
 </Description>
         <Archive type="binary" sha1sum="79eb0752a961b8e0d15c77d298c97498fbc89c5a">https://sources.getsol.us/README.Solus</Archive>
     </Source>
     <Package>
         <Name>godot-classic</Name>
-        <Summary xml:lang="en">Godot Engine Classical version – Multi-platform 2D and 3D game engine</Summary>
+        <Summary xml:lang="en">Godot Engine Classical version &#x2013; Multi-platform 2D and 3D game engine</Summary>
         <Description xml:lang="en">Godot Engine is a feature-packed, cross-platform game engine to create 2D and 3D games from a unified interface. It provides a comprehensive set of common tools, so that users can focus on making games without having to reinvent the wheel. Games can be exported in one click to a number of platforms, including the major desktop platforms (Linux, Mac OSX, Windows) as well as mobile (Android, iOS) and web-based (HTML5) platforms.
 </Description>
         <PartOf>games</PartOf>
@@ -46,7 +46,7 @@
     </Package>
     <Package>
         <Name>godot-mono</Name>
-        <Summary xml:lang="en">Godot Engine Mono version (C# support) – Multi-platform 2D and 3D game engine</Summary>
+        <Summary xml:lang="en">Godot Engine Mono version (C# support) &#x2013; Multi-platform 2D and 3D game engine</Summary>
         <Description xml:lang="en">Godot Engine is a feature-packed, cross-platform game engine to create 2D and 3D games from a unified interface. It provides a comprehensive set of common tools, so that users can focus on making games without having to reinvent the wheel. Games can be exported in one click to a number of platforms, including the major desktop platforms (Linux, Mac OSX, Windows) as well as mobile (Android, iOS) and web-based (HTML5) platforms.
 </Description>
         <PartOf>games</PartOf>
@@ -57,6 +57,7 @@
             <Path fileType="executable">/usr/bin/godot.mono</Path>
             <Path fileType="library">/usr/lib64/godot/GodotSharp/Api/Debug/GodotPlugins.dll</Path>
             <Path fileType="library">/usr/lib64/godot/GodotSharp/Api/Debug/GodotPlugins.pdb</Path>
+            <Path fileType="library">/usr/lib64/godot/GodotSharp/Api/Debug/GodotPlugins.runtimeconfig.json</Path>
             <Path fileType="library">/usr/lib64/godot/GodotSharp/Api/Debug/GodotSharp.dll</Path>
             <Path fileType="library">/usr/lib64/godot/GodotSharp/Api/Debug/GodotSharp.pdb</Path>
             <Path fileType="library">/usr/lib64/godot/GodotSharp/Api/Debug/GodotSharp.xml</Path>
@@ -65,6 +66,7 @@
             <Path fileType="library">/usr/lib64/godot/GodotSharp/Api/Debug/GodotSharpEditor.xml</Path>
             <Path fileType="library">/usr/lib64/godot/GodotSharp/Api/Release/GodotPlugins.dll</Path>
             <Path fileType="library">/usr/lib64/godot/GodotSharp/Api/Release/GodotPlugins.pdb</Path>
+            <Path fileType="library">/usr/lib64/godot/GodotSharp/Api/Release/GodotPlugins.runtimeconfig.json</Path>
             <Path fileType="library">/usr/lib64/godot/GodotSharp/Api/Release/GodotSharp.dll</Path>
             <Path fileType="library">/usr/lib64/godot/GodotSharp/Api/Release/GodotSharp.pdb</Path>
             <Path fileType="library">/usr/lib64/godot/GodotSharp/Api/Release/GodotSharp.xml</Path>
@@ -81,11 +83,19 @@
             <Path fileType="library">/usr/lib64/godot/GodotSharp/Tools/GodotTools.ProjectEditor.pdb</Path>
             <Path fileType="library">/usr/lib64/godot/GodotSharp/Tools/GodotTools.Shared.dll</Path>
             <Path fileType="library">/usr/lib64/godot/GodotSharp/Tools/GodotTools.Shared.pdb</Path>
+            <Path fileType="library">/usr/lib64/godot/GodotSharp/Tools/GodotTools.deps.json</Path>
             <Path fileType="library">/usr/lib64/godot/GodotSharp/Tools/GodotTools.dll</Path>
             <Path fileType="library">/usr/lib64/godot/GodotSharp/Tools/GodotTools.pdb</Path>
+            <Path fileType="library">/usr/lib64/godot/GodotSharp/Tools/GodotTools.runtimeconfig.json</Path>
             <Path fileType="library">/usr/lib64/godot/GodotSharp/Tools/JetBrains.Rider.PathLocator.dll</Path>
             <Path fileType="library">/usr/lib64/godot/GodotSharp/Tools/Microsoft.Build.Locator.dll</Path>
             <Path fileType="library">/usr/lib64/godot/GodotSharp/Tools/Newtonsoft.Json.dll</Path>
+            <Path fileType="library">/usr/lib64/godot/GodotSharp/Tools/nupkgs/Godot.NET.Sdk.4.2.2.nupkg</Path>
+            <Path fileType="library">/usr/lib64/godot/GodotSharp/Tools/nupkgs/Godot.SourceGenerators.4.2.2.nupkg</Path>
+            <Path fileType="library">/usr/lib64/godot/GodotSharp/Tools/nupkgs/GodotSharp.4.2.2.nupkg</Path>
+            <Path fileType="library">/usr/lib64/godot/GodotSharp/Tools/nupkgs/GodotSharp.4.2.2.snupkg</Path>
+            <Path fileType="library">/usr/lib64/godot/GodotSharp/Tools/nupkgs/GodotSharpEditor.4.2.2.nupkg</Path>
+            <Path fileType="library">/usr/lib64/godot/GodotSharp/Tools/nupkgs/GodotSharpEditor.4.2.2.snupkg</Path>
             <Path fileType="library">/usr/lib64/godot/godot.linuxbsd.editor.x86_64.llvm.mono</Path>
             <Path fileType="library">/usr/lib64/godot/godot.linuxbsd.template_release.x86_64.llvm.mono</Path>
             <Path fileType="data">/usr/share/applications/godot.mono.desktop</Path>
@@ -96,8 +106,8 @@
     </Package>
     <History>
         <Update release="51">
-            <Date>2024-02-07</Date>
-            <Version>4.2.1</Version>
+            <Date>2024-04-29</Date>
+            <Version>4.2.2</Version>
             <Comment>Packaging update</Comment>
             <Name>Thomas Staudinger</Name>
             <Email>Staudi.Kaos@gmail.com</Email>
