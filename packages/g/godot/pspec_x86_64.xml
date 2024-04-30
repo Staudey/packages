@@ -25,8 +25,8 @@
         </RuntimeDependencies>
         <Files>
             <Path fileType="executable">/usr/bin/godot</Path>
-            <Path fileType="library">/usr/lib64/godot/godot.linuxbsd.editor.x86_64.llvm</Path>
-            <Path fileType="library">/usr/lib64/godot/godot.linuxbsd.template_release.x86_64.llvm</Path>
+            <Path fileType="library">/usr/lib64/godot/godot.linuxbsd.editor.x86_64</Path>
+            <Path fileType="library">/usr/lib64/godot/godot.linuxbsd.template_release.x86_64</Path>
             <Path fileType="data">/usr/share/applications/org.godotengine.Godot.desktop</Path>
         </Files>
     </Package>
@@ -96,8 +96,8 @@
             <Path fileType="library">/usr/lib64/godot/GodotSharp/Tools/nupkgs/GodotSharp.4.2.2.snupkg</Path>
             <Path fileType="library">/usr/lib64/godot/GodotSharp/Tools/nupkgs/GodotSharpEditor.4.2.2.nupkg</Path>
             <Path fileType="library">/usr/lib64/godot/GodotSharp/Tools/nupkgs/GodotSharpEditor.4.2.2.snupkg</Path>
-            <Path fileType="library">/usr/lib64/godot/godot.linuxbsd.editor.x86_64.llvm.mono</Path>
-            <Path fileType="library">/usr/lib64/godot/godot.linuxbsd.template_release.x86_64.llvm.mono</Path>
+            <Path fileType="library">/usr/lib64/godot/godot.linuxbsd.editor.x86_64.mono</Path>
+            <Path fileType="library">/usr/lib64/godot/godot.linuxbsd.template_release.x86_64.mono</Path>
             <Path fileType="data">/usr/share/applications/godot.mono.desktop</Path>
         </Files>
         <Replaces>
@@ -106,7 +106,7 @@
     </Package>
     <History>
         <Update release="51">
-            <Date>2024-04-29</Date>
+            <Date>2024-04-30</Date>
             <Version>4.2.2</Version>
             <Comment>Packaging update</Comment>
             <Name>Thomas Staudinger</Name>

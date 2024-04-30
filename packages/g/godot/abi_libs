@@ -1,4 +1,4 @@
-godot.linuxbsd.editor.x86_64.llvm
-godot.linuxbsd.editor.x86_64.llvm.mono
-godot.linuxbsd.template_release.x86_64.llvm
-godot.linuxbsd.template_release.x86_64.llvm.mono
+godot.linuxbsd.editor.x86_64
+godot.linuxbsd.editor.x86_64.mono
+godot.linuxbsd.template_release.x86_64
+godot.linuxbsd.template_release.x86_64.mono
