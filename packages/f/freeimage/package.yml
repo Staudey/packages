@@ -1,6 +1,6 @@
 name       : freeimage
 version    : 3.18.0
-release    : 11
+release    : 12
 source     :
     - https://netcologne.dl.sourceforge.net/project/freeimage/Source%20Distribution/3.18.0/FreeImage3180.zip : f41379682f9ada94ea7b34fe86bf9ee00935a3147be41b6569c9605a53e438fd
 homepage   : https://freeimage.sourceforge.io/
@@ -20,8 +20,9 @@ builddeps  :
     - dos2unix
     - doxygen
     - jxrlib-devel
+    - tree
 libsplit   : no
-fatfakeroot: yes
+fatfakeroot: no
 setup      : |
     %apply_patches
 
@@ -48,5 +49,12 @@ build      : |
     doxygen FreeImagePlus.dox
     popd
 install    : |
-    %make_install -f Makefile.gnu
-    %make_install -f Makefile.fip
+    install -Dm0755 Dist/libfreeimage-$version.so $installdir/%libdir%/libfreeimage-$version.so
+    ln -srv $installdir/%libdir%/libfreeimage-$version.so $installdir/%libdir%/libfreeimage.so.3
+    ln -srv $installdir/%libdir%/libfreeimage.so.3 $installdir/%libdir%/libfreeimage.so
+    install -Dm0755 Dist/libfreeimageplus-$version.so $installdir/%libdir%/libfreeimageplus-$version.so
+    ln -srv $installdir/%libdir%/libfreeimageplus-$version.so $installdir/%libdir%/libfreeimageplus.so.3
+    ln -srv $installdir/%libdir%/libfreeimageplus.so.3 $installdir/%libdir%/libfreeimageplus.so
+    install -Dm0644 Source/FreeImage.h $installdir/usr/include/FreeImage.h
+    install -Dm0644 Wrapper/FreeImagePlus/FreeImagePlus.h $installdir/usr/include/FreeImagePlus.h
+    tree $installdir
