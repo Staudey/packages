@@ -1,0 +1,22 @@
+name       : fakeroot-test
+version    : '1'
+release    : 1
+source     :
+    - git|https://github.com/JonathanSalwan/binary-samples.git : 97e70694f1b8dac19e8f2a987ea478d0597c2371
+homepage   : https://github.com/JonathanSalwan/binary-samples
+license    : GPL-2.0-or-later
+component  : programming.tools
+summary    : Test package.
+description: |
+    This is a test package to test symlink generation issues with fakeroot.
+fatfakeroot: no
+builddeps  :
+#    - libglvnd
+    - tree
+build      : |
+    install -Dm0755 elf-Linux-lib-x64.so $installdir/%libdir%/lib1.so
+    ln -srv $installdir/%libdir%/lib1.so $installdir/%libdir%/lib2.so
+install    : |
+    ln -srv $installdir/%libdir%/lib2.so $installdir/%libdir%/lib3.so
+    ln -srv $installdir/%libdir%/lib3.so $installdir/%libdir%/lib4.so
+    tree $installdir
