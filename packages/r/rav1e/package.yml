@@ -15,22 +15,15 @@ builddeps  :
 networking : yes
 setup      : |
     cp $sources/Cargo.lock .
-    cargo fetch
+    %cargo_fetch
 build      : |
-    cargo build \
-                --frozen \
-                --release
+    %cargo_build
     cargo cbuild \
                  --prefix=/usr \
                  --frozen \
                  --release
 install    : |
-    cargo install \
-                  --frozen \
-                  --offline \
-                  --no-track \
-                  --path="." \
-                  --root="$installdir/usr"
+    %cargo_install
     cargo cinstall \
                    --destdir=$installdir \
                    --libdir=%libdir% \
@@ -40,6 +33,4 @@ install    : |
 
     rm -v $installdir/usr/lib64/*.a
 check      : |
-    cargo test \
-               --release \
-               --frozen
+    %cargo_test

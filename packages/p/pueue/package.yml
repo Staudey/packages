@@ -23,8 +23,7 @@ build      : |
     ./target/release/pueue completions zsh utils/completions/
 install    : |
     # Binaries
-    %cargo_install pueue
-    %cargo_install pueued
+    %cargo_install pueue pueued
 
     # Systemd service
     install -Dm00644 utils/pueued.service $installdir/%libdir%/systemd/user/pueued.service

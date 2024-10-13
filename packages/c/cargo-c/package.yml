@@ -31,6 +31,7 @@ setup      : |
 build      : |
     %cargo_build
 install    : |
-    for p in api build install test; do
-    %cargo_install cargo-c${p}
-    done
+    %cargo_install cargo-capi \
+                   cargo-cbuild \
+                   cargo-cinstall \
+                   cargo-ctest

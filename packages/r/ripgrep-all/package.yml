@@ -22,7 +22,6 @@ setup      : |
 build      : |
     %cargo_build
 install    : |
-    %cargo_install rga
-    %cargo_install rga-preproc
+    %cargo_install rga rga-preproc
 check      : |
     %cargo_test
