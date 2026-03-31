@@ -294,6 +294,7 @@ libglib-2.0.so.0:g_file_test
 libglib-2.0.so.0:g_filename_display_name
 libglib-2.0.so.0:g_filename_to_uri
 libglib-2.0.so.0:g_free
+libglib-2.0.so.0:g_free_sized
 libglib-2.0.so.0:g_get_current_dir
 libglib-2.0.so.0:g_get_monotonic_time
 libglib-2.0.so.0:g_get_num_processors
@@ -391,6 +392,7 @@ libglib-2.0.so.0:g_spawn_command_line_sync
 libglib-2.0.so.0:g_str_equal
 libglib-2.0.so.0:g_str_has_suffix
 libglib-2.0.so.0:g_str_hash
+libglib-2.0.so.0:g_str_is_ascii
 libglib-2.0.so.0:g_str_to_ascii
 libglib-2.0.so.0:g_strchomp
 libglib-2.0.so.0:g_strconcat
@@ -905,6 +907,7 @@ libuhdr.so.1:uhdr_dec_get_base_image
 libuhdr.so.1:uhdr_dec_get_exif
 libuhdr.so.1:uhdr_dec_get_gainmap_image
 libuhdr.so.1:uhdr_dec_get_gainmap_metadata
+libuhdr.so.1:uhdr_dec_get_gainmap_width
 libuhdr.so.1:uhdr_dec_get_icc
 libuhdr.so.1:uhdr_dec_get_image_height
 libuhdr.so.1:uhdr_dec_get_image_width

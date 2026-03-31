@@ -2240,9 +2240,6 @@ vips-jxl.so:vips_foreign_save_jxl_buffer_get_type
 vips-jxl.so:vips_foreign_save_jxl_file_get_type
 vips-jxl.so:vips_foreign_save_jxl_get_type
 vips-jxl.so:vips_foreign_save_jxl_target_get_type
-vips-magick.so:__bss_start
-vips-magick.so:_edata
-vips-magick.so:_end
 vips-magick.so:g_module_check_init
 vips-magick.so:magick_ColorspaceType2str
 vips-magick.so:magick_acquire_exception
